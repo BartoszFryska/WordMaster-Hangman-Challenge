@@ -31,7 +31,7 @@ Welcome to the Hangman Game in C++! This is a classic word-guessing game designe
 
 ## Customization
 
-You can customize the game by modifying the word list in the source code (hangman.cpp). Feel free to add your own words or themes to make the game more interesting.
+You can customize the game by modifying the word list in the source code (WordGenerator.cpp) or using a build in feature. Feel free to add your own words or themes to make the game more interesting.
 
 ## Requirements
 
