@@ -10,7 +10,10 @@ int main () {
 
     int OperationToPerform;
 
-    while ( IsNotExit() );
+    while ( IsNotExit ( OperationToPerform ) ) {
+
+        
+    }
 
     PrintExitMessage ();
 }
