@@ -20,7 +20,6 @@ void PrintIntro() {
     printf ( "\n\n");
     sleep ( 1 );
 
-    system ( "figlet -f block \"Hangman\"" );
 }
 
 void PrintExitMessage () {
