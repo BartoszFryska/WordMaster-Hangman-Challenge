@@ -3,6 +3,45 @@
 
 using namespace std;
 
+class Word {
+
+    private:
+        string guessWord;
+        string hint;
+        int type;
+
+    public:
+        bool * ArrayOfPositionsGuessedCorrectly;
+
+        Word ( string wo, string hi, int ty) {
+
+            guessWord = wo;
+            hint = hi;
+            type = ty;
+
+            ArrayOfPositionsGuessedCorrectly = new bool [ guessWord.length() ];
+            fill( ArrayOfPositionsGuessedCorrectly, ArrayOfPositionsGuessedCorrectly + guessWord.length(), false );
+        }
+
+        bool LetterIsInsideAWord ( char c ) {
+
+            bool WasThereATrue = false;
+
+            for ( int i = 0; i < guessWord.size(); i++ ) {
+
+                if ( guessWord [ i ] == c ) {
+
+                    ArrayOfPositionsGuessedCorrectly [ i ] = true;
+
+                    WasThereATrue = true;
+                }
+            }
+
+            return WasThereATrue;
+        }
+
+};
+
 void MakeInputUsable ( string &Input ) {
 
     int i = 0;
@@ -39,6 +78,8 @@ void MakeInputUsable ( string &Input ) {
 
 bool IsNotExit ( int &OperationToPerform ) {
 
+    PrintMenu ();
+
     string UserInput;
 
     getline ( cin, UserInput);
@@ -59,4 +100,33 @@ bool IsNotExit ( int &OperationToPerform ) {
     OperationToPerform = -1; //default, input unknown
 
     return true;
+}
+
+bool ChooseTypeOfWords() {
+
+    //outputing types
+    //getting input, if 'exit', exitting
+    //writing all types selected
+}
+
+bool Play() {
+
+    if ( !ChooseTypeOfWords() ) {
+
+        return false;
+    }
+
+    //generate a word
+
+    //play a game
+}
+
+bool Add () {
+
+    //add a word
+}
+
+bool Settings () {
+
+    //possibly changing size? idk what to set here
 }

@@ -22,6 +22,11 @@ void PrintIntro() {
 
 }
 
+void PrintMenu() {
+
+    //printing menu
+}
+
 void PrintExitMessage () {
 
     //printing exit message
