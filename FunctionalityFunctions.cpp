@@ -6,11 +6,11 @@ using namespace std;
 class Word {
 
     private:
-        string guessWord;
         string hint;
         int type;
 
     public:
+        string guessWord;
         bool * ArrayOfPositionsGuessedCorrectly;
 
         Word ( string wo, string hi, int ty) {
