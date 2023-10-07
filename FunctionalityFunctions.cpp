@@ -1,26 +1,25 @@
 #include <iostream>
 #include <string>
-
-using namespace std;
+#include "InterfaceLookFunctions.cpp"
 
 class Word {
 
     private:
-        string hint;
+        std::string hint;
         int type;
 
     public:
-        string guessWord;
+        std::string guessWord;
         bool * ArrayOfPositionsGuessedCorrectly;
 
-        Word ( string wo, string hi, int ty) {
+        Word ( std::string wo, std::string hi, int ty) {
 
             guessWord = wo;
             hint = hi;
             type = ty;
 
             ArrayOfPositionsGuessedCorrectly = new bool [ guessWord.length() ];
-            fill( ArrayOfPositionsGuessedCorrectly, ArrayOfPositionsGuessedCorrectly + guessWord.length(), false );
+            std::fill( ArrayOfPositionsGuessedCorrectly, ArrayOfPositionsGuessedCorrectly + guessWord.length(), false );
         }
 
         bool LetterIsInsideAWord ( char c ) {
@@ -41,6 +40,31 @@ class Word {
         }
 
 };
+
+namespace FONT {
+
+    void PrintWordInSpecialFont ( Word mistery ) {
+
+        std::string s = "";
+
+        for ( int i = 0; i < mistery.guessWord.size(); i++ ) {
+
+            if ( *( mistery.ArrayOfPositionsGuessedCorrectly + i ) ) {
+
+                    s += mistery.guessWord [ i ];
+            }
+
+            else {
+
+                s += " ";
+            }
+        }
+
+        PrintStringInSpecialFont ( s );
+    }
+};
+
+using namespace std;
 
 void MakeInputUsable ( string &Input ) {
 
@@ -107,6 +131,7 @@ bool ChooseTypeOfWords() {
     //outputing types
     //getting input, if 'exit', exitting
     //writing all types selected
+    return false;
 }
 
 bool Play() {
@@ -119,14 +144,17 @@ bool Play() {
     //generate a word
 
     //play a game
+    return true;
 }
 
 bool Add () {
 
     //add a word
+    return false;
 }
 
 bool Settings () {
 
     //possibly changing size? idk what to set here
+    return false;
 }

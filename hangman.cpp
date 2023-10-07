@@ -1,6 +1,5 @@
 #include <iostream>
 
-#include "InterfaceLookFunctions.cpp"
 #include "FunctionalityFunctions.cpp"
 
 int main () {

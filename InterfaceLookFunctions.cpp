@@ -11,17 +11,13 @@
 #include <cstdlib>
 #include <cstdio>
 #include <fstream>
-#include "FunctionalityFunctions.cpp"
-
-#define SPECIAL_FONT_SIZE_UPWARD 6
-#define SPECIAL_FONT_SIZE_HORIZONTAL 27
 
 namespace FONT {
 
     const int FontSizeUpward = 6;
     const int FontSizeHorizontal = 27;
 
-    string font_letter [ 26 ] = {
+    std::string font_letters [ 26 ] = {
 
         "  █████      ██   ██     ███████     ██   ██     ██   ██    ─────────   ", //letter A
         " ██████      ██   ██     ██████      ██   ██     ██████     ─────────   ", //letter B
@@ -51,54 +47,61 @@ namespace FONT {
         " ███████        ███        ███        ███        ███████    ─────────   "  //letter Z
     };
 
-    string font_numbers [ 10 ];
+    std::string font_numbers [ 10 ]; // Will add
 
-    string font_empty_space = "                                                            ─────────   ";
+    std::string font_empty_space = "                                                            ─────────   ";
 
-    void OutputACorrectLineOfACorrectCharacterInAFont ( char letter, int line ) {
+    void OutputACorrectLineOfACorrectCharacterInAFont ( char character, int line ) {
 
-    
+        if ( isdigit ( character ) ) {
 
-    
-    }
+            int digit = character - '0';
 
-    void PrintStringInSpecialFont ( std::string word ) {
+            for ( int i = 0 + FontSizeHorizontal * line; i < FontSizeHorizontal + FontSizeHorizontal * line; i ++ ) {
 
-        for ( int i = 0; i < word.size())
-    }
-};
-
-void OutputACorrectLineOfACorrectCharacterInAFont ( char letter, int line ) {
-
-    
-
-    
-}
-
-void PrintStringInSpecialFont ( std::string word ) {
-
-    for ( int i = 0; i < word.size())
-}
-
-void PrintWordInSpecialFont ( Word mistery ) {
-
-    string s = "";
-
-    for ( int i = 0; i < mistery.guessWord.size(); i++ ) {
-
-        if ( *( mistery.ArrayOfPositionsGuessedCorrectly + i ) ) {
-
-            s += mistery.guessWord [ i ];
+                printf ( "%c", font_numbers [ digit ] [ i ] );
+            }
         }
 
         else {
 
-            s += " ";
+            if ( isalpha ( character ) ) {
+
+                int which = character - 'A';
+
+                for ( int i = 0 + FontSizeHorizontal * line; i < FontSizeHorizontal + FontSizeHorizontal * line; i ++ ) {
+
+                    printf ( "%c", font_numbers [ which ] [ i ] );
+                }
+            }
+
+            else {
+
+                for ( int i = 0 + FontSizeHorizontal * line; i < FontSizeHorizontal + FontSizeHorizontal * line; i ++ ) {
+
+                    printf ( "%c", font_empty_space [ i ] );
+                }
+            }
         }
+
     }
 
-    PrintStringInSpecialFont ( s );
-}
+    void PrintStringInSpecialFont ( std::string word ) {
+
+        for ( int i = 0; i < word.length(); i ++ ) {
+
+            word [ i ] = toupper ( word [ i ] );
+        }
+
+        for ( int i = 0; i < FontSizeUpward; i++ ) {
+
+            for ( int j = 0; j < word.size(); j ++ ) {
+
+                OutputACorrectLineOfACorrectCharacterInAFont ( word [ j ], i );
+            }
+        }
+    }
+};
 
 void PrintIntro() {
 
@@ -107,6 +110,8 @@ void PrintIntro() {
 
     printf ( "\n\n");
     sleep ( 1 );
+    FONT::PrintStringInSpecialFont ( "HANGMAN" );
+    sleep(1);
 
 }
 
