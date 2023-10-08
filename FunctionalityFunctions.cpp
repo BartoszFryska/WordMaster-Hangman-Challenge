@@ -41,9 +41,7 @@ class Word {
 
 };
 
-namespace FONT {
-
-    void PrintWordInSpecialFont ( Word mistery ) {
+void PrintWordInSpecialFont ( Word mistery ) {
 
         std::string s = "";
 
@@ -60,9 +58,9 @@ namespace FONT {
             }
         }
 
-        PrintStringInSpecialFont ( s );
+        FONT::PrintStringInSpecialFont ( s );
     }
-};
+
 
 using namespace std;
 

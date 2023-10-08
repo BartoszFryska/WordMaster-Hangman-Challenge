@@ -30,5 +30,5 @@ int main () {
         }
     }
 
-    PrintExitMessage ();
-}   
+    PrintExitMessage ();    
+}       
