@@ -10,7 +10,7 @@ int main () {
 
     while ( IsNotExit ( OperationToPerform ) ) {
 
-        switch ( OperationToPerform ) {
+        switch ( OperationToPerform ) { 
 
             case 1:
             Play ();
@@ -28,7 +28,7 @@ int main () {
             system("clear");
             printf ( "Unknown input, please try again" );
         }
-    }
+    } 
 
     PrintExitMessage ();    
 }       

@@ -1,43 +1,22 @@
 #include <iostream>
 #include <string>
 #include "InterfaceLookFunctions.cpp"
+#include "WordGenerator.cpp"
 
-class Word {
+namespace GAME_PARAMETERS {
 
-    private:
-        std::string hint;
-        int type;
+    int number_of_word_types;
+    std::string * word_types_list;
 
-    public:
-        std::string guessWord;
-        bool * ArrayOfPositionsGuessedCorrectly;
+    void InportWordTypes () {
 
-        Word ( std::string wo, std::string hi, int ty) {
+        //inporting from the file
+    }
 
-            guessWord = wo;
-            hint = hi;
-            type = ty;
+    void AddWordType () {
 
-            ArrayOfPositionsGuessedCorrectly = new bool [ guessWord.length() ];
-            std::fill( ArrayOfPositionsGuessedCorrectly, ArrayOfPositionsGuessedCorrectly + guessWord.length(), false );
-        }
 
-        bool LetterIsInsideAWord ( char c ) {
-
-            bool WasThereATrue = false;
-
-            for ( int i = 0; i < guessWord.size(); i++ ) {
-
-                if ( guessWord [ i ] == c ) {
-
-                    ArrayOfPositionsGuessedCorrectly [ i ] = true;
-
-                    WasThereATrue = true;
-                }
-            }
-
-            return WasThereATrue;
-        }
+    }
 
 };
 
@@ -61,8 +40,9 @@ void PrintWordInSpecialFont ( Word mistery ) {
         FONT::PrintStringInSpecialFont ( s );
     }
 
-
 using namespace std;
+
+void GameStart ( Word mistery );
 
 void MakeInputUsable ( string &Input ) {
 
@@ -124,7 +104,7 @@ bool IsNotExit ( int &OperationToPerform ) {
     return true;
 }
 
-bool ChooseTypeOfWords() {
+bool ChooseTypeOfWords( bool * ChosenTypes ) {
 
     //outputing types
     //getting input, if 'exit', exitting
@@ -134,12 +114,20 @@ bool ChooseTypeOfWords() {
 
 bool Play() {
 
-    if ( !ChooseTypeOfWords() ) {
+    bool * ChosenTypes = new bool [ GAME_PARAMETERS::number_of_word_types ];
+
+    if ( !ChooseTypeOfWords( ChosenTypes ) ) {
 
         return false;
     }
 
-    //generate a word
+    Word mistery;
+
+    GenerateAWord ( mistery, ChosenTypes, GAME_PARAMETERS::number_of_word_types, GAME_PARAMETERS::word_types_list );
+
+    delete ChosenTypes;
+
+    GameStart ( mistery );
 
     //play a game
     return true;
@@ -153,6 +141,51 @@ bool Add () {
 
 bool Settings () {
 
+
     //possibly changing size? idk what to set here
     return false;
+}
+
+bool GameIsNotLost ( int NumberOfMisses ) {
+
+    if ( NumberOfMisses >= 8 ) {
+
+        return false;
+    }
+
+    return true;
+}
+
+char GetGameInput () {
+
+    string input;
+    getline ( cin, input );
+
+    if ( isalpha( input [ 0 ] ) ) {
+
+        return toupper ( input [ 0 ] );
+    }
+
+    else return 1;
+}
+
+void GameStart ( Word mistery ) {
+
+    //preparation for the game 
+
+    bool WasThatLetterChosen [ 26 ];
+    fill( WasThatLetterChosen, WasThatLetterChosen + 26, false );
+    int NumberOfMisses = 0;
+    char CurrentLetterChosen;
+
+    while ( GameIsNotLost ( NumberOfMisses ) ) {
+
+        PrintGameScreen ( WasThatLetterChosen, NumberOfMisses, mistery.hint );
+
+        CurrentLetterChosen = GetGameInput ();
+
+        if ( CurrentLetterChosen == 1 ) continue;
+
+
+    }
 }

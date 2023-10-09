@@ -93,6 +93,8 @@ namespace FONT {
         }
     }
 
+    void PrintWordInSpecialFont ( ... );
+
 };
 
 void PrintIntro() {
@@ -115,4 +117,9 @@ void PrintMenu() {
 void PrintExitMessage () {
 
     //printing exit message
+}
+
+void PrintGameScreen ( bool WasTheLetterChosen [ 26 ], int NumberOfMisses, std::string hint ) {
+
+        // printing a game screen
 }
