@@ -178,14 +178,20 @@ void GameStart ( Word mistery ) {
     int NumberOfMisses = 0;
     char CurrentLetterChosen;
 
+    //gameplay
+
     while ( GameIsNotLost ( NumberOfMisses ) ) {
 
-        PrintGameScreen ( WasThatLetterChosen, NumberOfMisses, mistery.hint );
+        PrintGameScreen ( WasThatLetterChosen, NumberOfMisses, mistery );
 
         CurrentLetterChosen = GetGameInput ();
 
         if ( CurrentLetterChosen == 1 ) continue;
 
+        if ( WasThatLetterChosen [ CurrentLetterChosen ] ) continue;
 
+        WasThatLetterChosen [ CurrentLetterChosen ] = true;
+
+        if ( !mistery.LetterIsInsideAWord( CurrentLetterChosen ) ) NumberOfMisses++;
     }
 }

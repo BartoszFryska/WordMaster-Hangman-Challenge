@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include <fstream>
+#include "WordGenerator.cpp"
 
 namespace FONT {
 
@@ -93,8 +94,6 @@ namespace FONT {
         }
     }
 
-    void PrintWordInSpecialFont ( ... );
-
 };
 
 void PrintIntro() {
@@ -119,7 +118,7 @@ void PrintExitMessage () {
     //printing exit message
 }
 
-void PrintGameScreen ( bool WasTheLetterChosen [ 26 ], int NumberOfMisses, std::string hint ) {
+void PrintGameScreen ( bool WasTheLetterChosen [ 26 ], int NumberOfMisses, Word mistery ) {
 
         // printing a game screen
 }

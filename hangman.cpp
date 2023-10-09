@@ -32,3 +32,8 @@ int main () {
 
     PrintExitMessage ();    
 }       
+
+/* plan to do:
+
+    finish gameplay aspects -> manage files -> finish generator -> finished first product
+*/
