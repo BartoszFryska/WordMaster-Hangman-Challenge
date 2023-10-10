@@ -122,18 +122,287 @@ void PrintExitMessage () {
     //printing exit message
 }
 
-void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word mistery ) {
+void PrintLettersInColours( char WasTheLetterChosen [ 26 ] ) {
 
-        switch ( NumberOfMisses ) {
+    for ( int i = 0; i < 26; i ++ ) {
+
+        switch ( (int) WasTheLetterChosen [ i ] ) {
 
             case 0:
-            printf ( "")
+            cout << (char) i + 'A' << " ";
+            break;
+
+            case 1:
+            cout << GREEN << (char) i + 'A' << RESET << " ";
+            break;
+
+            case 2:
+            cout << RED << (char) i + 'A' << RESET << " ";
+            break;
+        }
+    }
+
+    cout << '\n';
+}
+
+void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word mistery ) {
+
+        switch ( NumberOfMisses ) { //first half (to chosen letter indicator)
+
+            case 0:
+            printf ( "\n");
+            printf ( "\n");
+            printf ( "\n");
+            printf( "                                                   ____    _   _    _____    ____     ____  \n");
+            printf ("                                                  / ___|  | | | |  | ____|  / ___|   / ___| \n");
+            printf ("                                                 | |  _   | | | |  |  _|    \\___ \\   \\___ \\ \n");
+            printf ("                                                 | |_| |  | | | |  | |___    ___) |   ___) |\n");
+            printf ("                                                  \\____|   \\___/   |_____|  |____/   |____/ \n");
+            printf ("\n");
+            printf ( "\n");
+            printf ( "\n");
+            printf ("                                              ");
+            break;
+
+            case 1:
+            printf ("\n");
+            printf ("\n");
+            printf ("\n");
+            printf ("                         *   *                     ____    _   _    _____    ____     ____  \n");
+            printf ("                      *         *                 / ___|  | | | |  | ____|  / ___|   / ___| \n");
+            printf ("                     *           *               | |  _   | | | |  |  _|    \\___ \\   \\___ \\ \n");
+            printf ("                     *           *               | |_| |  | | | |  | |___    ___) |   ___) |\n");
+            printf ("                      *         *                 \\____|   \\___/   |_____|  |____/   |____/ \n");
+            printf ("                         *   *\n");
+            printf ("\n");
+            printf ("\n");
+            printf ("                                              ");
+            break;
+
+            case 2:
+            printf ("\n");
+            printf ("\n");
+            printf ("\n");
+            printf ("                         *   *                     ____    _   _    _____    ____     ____  \n");
+            printf ("                      *         *                 / ___|  | | | |  | ____|  / ___|   / ___| \n");
+            printf ("                     *           *               | |  _   | | | |  |  _|    \\___ \\   \\___ \\ \n");
+            printf ("                     *           *               | |_| |  | | | |  | |___    ___) |   ___) |\n");
+            printf ("                      *         *                 \\____|   \\___/   |_____|  |____/   |____/ \n");
+            printf ("                         *   *\n");
+            printf ("                           |\n");
+            printf ("                           |\n");
+            printf ("                           |                  ");
+            break;
+
+            case 3:
+            printf ("\n");
+            printf ("\n");
+            printf ("\n");
+            printf ("                         *   *                     ____    _   _    _____    ____     ____  \n");
+            printf ("                      *         *                 / ___|  | | | |  | ____|  / ___|   / ___| \n");
+            printf ("                     *           *               | |  _   | | | |  |  _|    \\___ \\   \\___ \\ \n");
+            printf ("                     *           *               | |_| |  | | | |  | |___    ___) |   ___) |\n");
+            printf ("                      *         *                 \\____|   \\___/   |_____|  |____/   |____/ \n");
+            printf ("                         *   *\n");
+            printf ("                           |\n");
+            printf ("                           |\n");
+            printf ("                           |                  ");
+            break;
+
+            case 4:
+            printf ("                           █\n");
+            printf ("                           █\n");
+            printf ("                           █\n");
+            printf ("                         *   *                     ____    _   _    _____    ____     ____  \n");
+            printf ("                      *         *                 / ___|  | | | |  | ____|  / ___|   / ___| \n");
+            printf ("                     *           *               | |  _   | | | |  |  _|    \\___ \\   \\___ \\ \n");
+            printf ("                     *           *               | |_| |  | | | |  | |___    ___) |   ___) |\n");
+            printf ("                      *         *                 \\____|   \\___/   |_____|  |____/   |____/ \n");
+            printf ("                         *   *\n");
+            printf ("                           |\n");
+            printf ("                           |\n");
+            printf ("                           |                  ");
+            break;
+
+            case 5:
+            printf ("           ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█\n");
+            printf ("                           █\n");
+            printf ("                           █\n");
+            printf ("                         *   *                     ____    _   _    _____    ____     ____  \n");
+            printf ("                      *         *                 / ___|  | | | |  | ____|  / ___|   / ___| \n");
+            printf ("                     *           *               | |  _   | | | |  |  _|    \\___ \\   \\___ \\ \n");
+            printf ("                     *           *               | |_| |  | | | |  | |___    ___) |   ___) |\n");
+            printf ("                      *         *                 \\____|   \\___/   |_____|  |____/   |____/ \n");
+            printf ("                         *   *\n");
+            printf ("                           |\n");
+            printf ("                           |\n");
+            printf ("                           |                  ");
+            break;
+
+            case 6:
+            printf ("          █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█\n");
+            printf ("          █                █\n");
+            printf ("          █                █\n");
+            printf ("          █              *   *                       ____       _       __  __    _____  \n");
+            printf ("          █           *         *                   / ___|     / \\     |  \\/  |  | ____| \n");
+            printf ("          █          *   X   X   *                 | |  _     / _ \\    | |\\/| |  |  _|   \n");
+            printf ("          █          *           *                 | |_| |   / ___ \\   | |  | |  | |___  \n");
+            printf ("          █           *    ◠    *                  \\____|  /_/   \\_\\  |_|  |_|  |_____|\n");
+            printf ("          █              *   *                        ___    __     __   _____    ____   \n");
+            printf ("          █                |                         / _ \\   \\ \\   / /  | ____|  |  _ \\  \n");
+            printf ("          █                |                        | | | |   \\ \\ / /   |  _|    | |_) | \n");
+            printf ("          █                |                        | |_| |    \\ V /    | |___   |  _ <  \n");
+            printf ("          █         ───────┼───────                  \\___/      \\_/     |_____|  |_| \\_\\ \n");
+            printf ("          █                |\n");
+            printf ("          █                |\n");
+            printf ("          █                |\n");
+            printf ("          █                |                  ");
+            break;
+        }
+
+        PrintLettersInColours( WasTheLetterChosen );
+
+        switch ( NumberOfMisses ) { //second half
+
+            case 0:
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            break;
+
+            case 1:
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            break;
+
+            case 2:
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            break;
+
+            case 3:
+            printf ( "                    ───────┼───────\n" );
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            break;
+
+            case 4:
+            printf ( "                    ───────┼───────\n" );
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "                          /\n" );
+            printf ( "                         /\n" );
+            printf ( "                        /\n" );
+            printf ( "                       /\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            break;
+
+            case 5:
+            printf ( "                    ───────┼───────\n" );
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "                           |\n" );
+            printf ( "                          / \\ \n" );
+            printf ( "                         /   \\ \n" );
+            printf ( "                        /     \\ \n" );
+            printf ( "                       /       \\ \n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            printf ( "\n" );
+            break;
+
+            case 6:
+            printf ( "          █               / \\\n" );
+            printf ( "          █              /   \\\n" );
+            printf ( "          █             /     \\\n" );
+            printf ( "          █            /       \\\n" );
+            printf ( "          █\n" );
+            printf ( "          █\n" );
+            printf ( "          █\n" );
+            printf ( "   ▄▄▄▄▄▄▄█▄▄▄▄▄▄▄\n" );
+            break;
         }
 }
 
 
 
 /*
+
+          █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█                                                              
+          █                █                                                           
+          █                █                                                            
+          █              *   *                       ____       _       __  __    _____              
+          █           *         *                   / ___|     / \     |  \/  |  | ____| 
+          █          *   X   X   *                 | |  _     / _ \    | |\/| |  |  _|   
+          █          *           *                 | |_| |   / ___ \   | |  | |  | |___  
+          █           *    ◠    *                   \____|  /_/   \_\  |_|  |_|  |_____|
+          █              *   *                        ___    __     __   _____    ____   
+          █                |                         / _ \   \ \   / /  | ____|  |  _ \  
+          █                |                        | | | |   \ \ / /   |  _|    | |_) | 
+          █                |                        | |_| |    \ V /    | |___   |  _ <  
+          █         ───────┼───────                  \___/      \_/     |_____|  |_| \_\ 
+          █                |                     
+          █                |                                                                                                                                                        
+          █                |
+          █                |                  A B C D E F G H I J K L M N O P 1 R S T U V W X Y Z                                        
+          █               / \                                                             
+          █              /   \                                                           
+          █             /     \                                                          
+          █            /       \
+          █
+          █
+          █ 
+   ▄▄▄▄▄▄▄█▄▄▄▄▄▄▄
+
 -----------------------
 
 
@@ -320,20 +589,20 @@ void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█                                                              
           █                █                                                           
           █                █                                                            
-          █              *   *                     ____    _                      
-          █           *         *                 / ___|  | | | |  | ____|  / ___|   / ___|  
-          █          *   X   X   *               | |  _   | | | |  |  _|    \___ \   \___ \   
-          █          *           *               | |_| |  | | | |  | |___    ___) |   ___) | 
-          █           *    ◠    *                 \____|   \___/   |_____|  |____/   |____/   
-          █              *   *                                                              
-          █                |                                                                                                  
-          █                |                                                                                                  
-          █                |                                                             
-          █         ───────┼───────                                                             
-          █                |                                                             
+          █              *   *                       ____       _       __  __    _____              
+          █           *         *                   / ___|     / \     |  \/  |  | ____| 
+          █          *   X   X   *                 | |  _     / _ \    | |\/| |  |  _|   
+          █          *           *                 | |_| |   / ___ \   | |  | |  | |___  
+          █           *    ◠    *                   \____|  /_/   \_\  |_|  |_|  |_____|
+          █              *   *                        ___    __     __   _____    ____   
+          █                |                         / _ \   \ \   / /  | ____|  |  _ \  
+          █                |                        | | | |   \ \ / /   |  _|    | |_) | 
+          █                |                        | |_| |    \ V /    | |___   |  _ <  
+          █         ───────┼───────                  \___/      \_/     |_____|  |_| \_\ 
+          █                |                     
           █                |                                                                                                                                                        
           █                |
-          █                |                         A B C D E F G H I J K L M N O P 1 R S T U V W X Y Z                                        
+          █                |                  A B C D E F G H I J K L M N O P 1 R S T U V W X Y Z                                        
           █               / \                                                             
           █              /   \                                                           
           █             /     \                                                          
