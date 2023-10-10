@@ -3,23 +3,6 @@
 #include "InterfaceLookFunctions.cpp"
 #include "WordGenerator.cpp"
 
-namespace GAME_PARAMETERS {
-
-    int number_of_word_types;
-    std::string * word_types_list;
-
-    void InportWordTypes () {
-
-        //inporting from the file
-    }
-
-    void AddWordType () {
-
-
-    }
-
-};
-
 void PrintWordInSpecialFont ( Word mistery ) {
 
         std::string s = "";
