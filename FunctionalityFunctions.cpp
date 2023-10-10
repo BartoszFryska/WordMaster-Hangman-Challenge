@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "InterfaceLookFunctions.cpp"
-#include "WordGenerator.cpp"
 
 void PrintWordInSpecialFont ( Word mistery ) {
 
@@ -71,7 +70,7 @@ bool IsNotExit ( int &OperationToPerform ) {
 
     MakeInputUsable ( UserInput );
 
-    if ( UserInput == "exit" || UserInput == "4" || UserInput == "bye") {
+    if ( UserInput == "exit" || UserInput == "quit" || UserInput == "4" || UserInput == "bye") {
 
         return false;
     }
@@ -156,8 +155,8 @@ void GameStart ( Word mistery ) {
 
     //preparation for the game 
 
-    bool WasThatLetterChosen [ 26 ];
-    fill( WasThatLetterChosen, WasThatLetterChosen + 26, false );
+    char WasThatLetterChosen [ 26 ]; // state 0 represents a letter that was never chosen, 1 is a correct guess and 2 is a wrong guess
+    fill( WasThatLetterChosen, WasThatLetterChosen + 26, 0 );
     int NumberOfMisses = 0;
     char CurrentLetterChosen;
 
@@ -173,8 +172,12 @@ void GameStart ( Word mistery ) {
 
         if ( WasThatLetterChosen [ CurrentLetterChosen ] ) continue;
 
-        WasThatLetterChosen [ CurrentLetterChosen ] = true;
+        WasThatLetterChosen [ CurrentLetterChosen ] ++ ;
 
-        if ( !mistery.LetterIsInsideAWord( CurrentLetterChosen ) ) NumberOfMisses++;
+        if ( !mistery.LetterIsInsideAWord( CurrentLetterChosen ) ) {
+
+            NumberOfMisses++;
+            WasThatLetterChosen [ CurrentLetterChosen ] ++;
+        }
     }
 }

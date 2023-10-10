@@ -48,16 +48,19 @@ namespace GAME_PARAMETERS {
     bool InportWordTypes () {
 
         //inporting from the file
+        return false;
     }
 
     bool InportListOfStoredWordTypes () {
 
         //inporting a list
+        return false;
     }
 
     bool AddWordType () {
 
         //adding a word type
+        return false;
     }
 
 };

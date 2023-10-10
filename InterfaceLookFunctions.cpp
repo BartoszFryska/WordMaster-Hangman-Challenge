@@ -11,7 +11,11 @@
 #include <cstdlib>
 #include <cstdio>
 #include <fstream>
-#include "WordGenerator.cpp"
+#include "WordGeneratorAndInitializerFunctions.cpp"
+
+#define RESET   "\033[0m"
+#define RED     "\033[31m"      /* Red */
+#define GREEN   "\033[32m"      /* Green */
 
 namespace FONT {
 
@@ -118,33 +122,62 @@ void PrintExitMessage () {
     //printing exit message
 }
 
-void PrintGameScreen ( bool WasTheLetterChosen [ 26 ], int NumberOfMisses, Word mistery ) {
+void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word mistery ) {
 
-        // printing a game screen
+        switch ( NumberOfMisses ) {
+
+            case 0:
+            printf ( "")
+        }
 }
 
 
 
+/*
+-----------------------
+
+
+
+                                                   ____    _   _    _____    ____     ____  
+                                                  / ___|  | | | |  | ____|  / ___|   / ___| 
+                                                 | |  _   | | | |  |  _|    \___ \   \___ \ 
+                                                 | |_| |  | | | |  | |___    ___) |   ___) |
+                                                  \____|   \___/   |_____|  |____/   |____/ 
+
+
+
+                                              A B C D E F G H I J K L M N O P 1 R S T U V W X Y Z
+
+
+
+
+
+
+
+
+
+
+               
 
 
  ---------------------                                                                                       
-                                                                      
-                                                                                      
-                                                                                       
-                         *   *         
-                      *         *       
-                     *           *     
-                     *           *    
-                      *         *     
-                         *   *                                                              
+
+
+
+                         *   *                     ____    _   _    _____    ____     ____  
+                      *         *                 / ___|  | | | |  | ____|  / ___|   / ___| 
+                     *           *               | |  _   | | | |  |  _|    \___ \   \___ \ 
+                     *           *               | |_| |  | | | |  | |___    ___) |   ___) |
+                      *         *                 \____|   \___/   |_____|  |____/   |____/ 
+                         *   *
                                                                                                                              
                                                                                                                              
-                                                                                        
+                                              A B C D E F G H I J K L M N O P 1 R S T U V W X Y Z
                                                                                         
                                                                                         
                                                                                                                                                                                     
                            
-                                                                                       
+                                                                                    
                                                                                       
                                                                                
                                                                           
@@ -157,15 +190,15 @@ void PrintGameScreen ( bool WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
                                                                       
                                                                                       
                                                                                        
-                         *   *         
-                      *         *       
-                     *           *     
-                     *           *    
-                      *         *     
+                         *   *                     ____    _   _    _____    ____     ____           
+                      *         *                 / ___|  | | | |  | ____|  / ___|   / ___|        
+                     *           *               | |  _   | | | |  |  _|    \___ \   \___ \      
+                     *           *               | |_| |  | | | |  | |___    ___) |   ___) | 
+                      *         *                 \____|   \___/   |_____|  |____/   |____/      
                          *   *                                                              
                            |                                                                                                  
                            |                                                                                                  
-                           |                                                             
+                           |                  A B C D E F G H I J K L M N O P 1 R S T U V W X Y Z
                            |                                                             
                            |                                                             
                            |                                                                                                                                                         
@@ -183,15 +216,15 @@ void PrintGameScreen ( bool WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
                                                                       
                                                                                       
                                                                                        
-                         *   *         
-                      *         *       
-                     *           *     
-                     *           *    
-                      *         *     
+                         *   *                     ____    _   _    _____    ____     ____           
+                      *         *                 / ___|  | | | |  | ____|  / ___|   / ___|        
+                     *           *               | |  _   | | | |  |  _|    \___ \   \___ \      
+                     *           *               | |_| |  | | | |  | |___    ___) |   ___) | 
+                      *         *                 \____|   \___/   |_____|  |____/   |____/      
                          *   *                                                              
                            |                                                                                                  
                            |                                                                                                  
-                           |                                                             
+                           |                  A B C D E F G H I J K L M N O P 1 R S T U V W X Y Z
                     ───────┼───────                                                             
                            |                                                             
                            |                                                                                                                                                         
@@ -209,15 +242,15 @@ void PrintGameScreen ( bool WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
                                                                       
                                                                                       
                                                                                        
-                         *   *         
-                      *         *       
-                     *           *     
-                     *           *    
-                      *         *     
-                         *   *                                                              
-                           |                                                                                                  
-                           |                                                                                                  
-                           |                                                             
+                         *   *                     ____    _   _    _____    ____     ____   
+                      *         *                 / ___|  | | | |  | ____|  / ___|   / ___| 
+                     *           *               | |  _   | | | |  |  _|    \___ \   \___ \ 
+                     *           *               | |_| |  | | | |  | |___    ___) |   ___) | 
+                      *         *                 \____|   \___/   |_____|  |____/   |____/ 
+                         *   * 
+                           | 
+                           |
+                           |                  A B C D E F G H I J K L M N O P 1 R S T U V W X Y Z
                     ───────┼───────                                                             
                            |                                                             
                            |                                                                                                                                                         
@@ -235,15 +268,15 @@ void PrintGameScreen ( bool WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
                            █                                                              
                            █                                                           
                            █                                                            
-                         *   *         
-                      *         *       
-                     *           *     
-                     *           *    
-                      *         *     
+                         *   *                     ____    _   _    _____    ____     ____           
+                      *         *                 / ___|  | | | |  | ____|  / ___|   / ___|        
+                     *           *               | |  _   | | | |  |  _|    \___ \   \___ \      
+                     *           *               | |_| |  | | | |  | |___    ___) |   ___) | 
+                      *         *                 \____|   \___/   |_____|  |____/   |____/                                                           
                          *   *                                                              
                            |                                                                                                  
                            |                                                                                                  
-                           |                                                             
+                           |                  A B C D E F G H I J K L M N O P 1 R S T U V W X Y Z
                     ───────┼───────                                                             
                            |                                                             
                            |                                                                                                                                                         
@@ -261,11 +294,11 @@ void PrintGameScreen ( bool WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
            ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█                                                              
                            █                                                           
                            █                                                            
-                         *   *         
-                      *         *       
-                     *           *     
-                     *           *    
-                      *         *     
+                         *   *                     ____    _   _    _____    ____     ____           
+                      *         *                 / ___|  | | | |  | ____|  / ___|   / ___|        
+                     *           *               | |  _   | | | |  |  _|    \___ \   \___ \      
+                     *           *               | |_| |  | | | |  | |___    ___) |   ___) | 
+                      *         *                 \____|   \___/   |_____|  |____/   |____/   
                          *   *                                                              
                            |                                                                                                  
                            |                                                                                                  
@@ -287,20 +320,20 @@ void PrintGameScreen ( bool WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
           █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█                                                              
           █                █                                                           
           █                █                                                            
-          █              *   *         
-          █           *         *       
-          █          *   X   X   *     
-          █          *           *    
-          █           *    ◠    *     
+          █              *   *                     ____    _                      
+          █           *         *                 / ___|  | | | |  | ____|  / ___|   / ___|  
+          █          *   X   X   *               | |  _   | | | |  |  _|    \___ \   \___ \   
+          █          *           *               | |_| |  | | | |  | |___    ___) |   ___) | 
+          █           *    ◠    *                 \____|   \___/   |_____|  |____/   |____/   
           █              *   *                                                              
           █                |                                                                                                  
           █                |                                                                                                  
           █                |                                                             
           █         ───────┼───────                                                             
           █                |                                                             
-          █                |                                                                                                                                                         
+          █                |                                                                                                                                                        
           █                |
-          █                |                                                             
+          █                |                         A B C D E F G H I J K L M N O P 1 R S T U V W X Y Z                                        
           █               / \                                                             
           █              /   \                                                           
           █             /     \                                                          
@@ -310,3 +343,4 @@ void PrintGameScreen ( bool WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
           █ 
    ▄▄▄▄▄▄▄█▄▄▄▄▄▄▄
 
+*/
