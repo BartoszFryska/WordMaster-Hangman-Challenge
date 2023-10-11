@@ -100,6 +100,26 @@ namespace FONT {
 
 };
 
+void PrintWordInSpecialFont ( Word mistery ) {
+
+        std::string s = "";
+
+        for ( int i = 0; i < mistery.guessWord.size(); i++ ) {
+
+            if ( *( mistery.ArrayOfPositionsGuessedCorrectly + i ) ) {
+
+                    s += mistery.guessWord [ i ];
+            }
+
+            else {
+
+                s += " ";
+            }
+        }
+
+        FONT::PrintStringInSpecialFont ( s );
+    }
+
 void PrintIntro() {
 
     system ( "clear" );
@@ -129,23 +149,42 @@ void PrintLettersInColours( char WasTheLetterChosen [ 26 ] ) {
         switch ( (int) WasTheLetterChosen [ i ] ) {
 
             case 0:
-            cout << (char) i + 'A' << " ";
+            std::cout << (char) (i + 'A') << " ";
             break;
 
             case 1:
-            cout << GREEN << (char) i + 'A' << RESET << " ";
+            std::cout << GREEN << (char) (i + 'A') << RESET << " ";
             break;
 
             case 2:
-            cout << RED << (char) i + 'A' << RESET << " ";
+            std::cout << RED << (char) (i + 'A') << RESET << " ";
             break;
         }
     }
 
-    cout << '\n';
+    std::cout << '\n';
+}
+
+void PrintHint ( std::string hint  ) {
+
+    printf ( "Hint: " );
+
+    for ( int i = 0; i < hint.size(); i++ ) {
+
+        if ( (i + 7) % 105 == 0 ) printf ( "\n" );
+        printf ( "%c", hint [ i ] );
+    }
+    printf ("\n");
+}
+
+void PrintGameScreenComponentsSeparator () {
+
+    printf ( "--------------------------------------------------------------------------------------------------------\n" );
 }
 
 void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word mistery ) {
+
+        system ( "clear" );
 
         switch ( NumberOfMisses ) { //first half (to chosen letter indicator)
 
@@ -371,6 +410,20 @@ void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
             printf ( "   ▄▄▄▄▄▄▄█▄▄▄▄▄▄▄\n" );
             break;
         }
+
+        printf ( "\n" );
+
+        PrintGameScreenComponentsSeparator ();
+
+        PrintHint ( mistery.hint );
+
+        PrintGameScreenComponentsSeparator ();
+
+        printf ( "\n\n ");
+
+        PrintWordInSpecialFont ( mistery );
+
+        printf ( "Your guess: ");
 }
 
 
@@ -403,7 +456,7 @@ void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
           █ 
    ▄▄▄▄▄▄▄█▄▄▄▄▄▄▄
 
------------------------
+--------------------------------------------------------------------------------------------------------
 
 
 

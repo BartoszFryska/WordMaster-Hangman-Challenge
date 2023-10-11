@@ -69,6 +69,7 @@ namespace GAME_PARAMETERS {
 bool GenerateAWord ( Word &mistery, bool * ChosenTypes, int NumberOfTypes, std::string * WordTypeslist ) {
 
     // generate a word randomly by choosing a random number, checking list 
-    return false;
+    mistery.FillWord ( "ANIA", "Najukochansza sziewczyna na swiecie", 1 );
+    return true;
 }
 

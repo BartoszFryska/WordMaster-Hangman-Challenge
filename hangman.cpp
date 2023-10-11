@@ -6,7 +6,7 @@ int main () {
 
     PrintIntro ();
 
-    int OperationToPerform;
+    int OperationToPerform;  
 
     while ( IsNotExit ( OperationToPerform ) ) {
 
@@ -29,7 +29,7 @@ int main () {
             printf ( "Unknown input, please try again" );
         }
     } 
-
+ 
     PrintExitMessage ();    
 }       
 

@@ -2,26 +2,6 @@
 #include <string>
 #include "InterfaceLookFunctions.cpp"
 
-void PrintWordInSpecialFont ( Word mistery ) {
-
-        std::string s = "";
-
-        for ( int i = 0; i < mistery.guessWord.size(); i++ ) {
-
-            if ( *( mistery.ArrayOfPositionsGuessedCorrectly + i ) ) {
-
-                    s += mistery.guessWord [ i ];
-            }
-
-            else {
-
-                s += " ";
-            }
-        }
-
-        FONT::PrintStringInSpecialFont ( s );
-    }
-
 using namespace std;
 
 void GameStart ( Word mistery );
@@ -88,10 +68,13 @@ bool IsNotExit ( int &OperationToPerform ) {
 
 bool ChooseTypeOfWords( bool * ChosenTypes ) {
 
+    system ("clear" );
+    printf ( "wordtypes, bla bla bla" );
+    getchar();
     //outputing types
     //getting input, if 'exit', exitting
     //writing all types selected
-    return false;
+    return true;
 }
 
 bool Play() {
