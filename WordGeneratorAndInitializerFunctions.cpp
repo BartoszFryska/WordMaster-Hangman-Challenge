@@ -57,11 +57,21 @@ namespace GAME_PARAMETERS {
     int number_of_word_types;
     std::string * word_types_list;
     int * list_of_types_of_words_stored_in_a_file;
+    int number_of_words;
 
-    bool InportWordTypes () {
+    bool InporGameParameters () {
 
-        //inporting from the file
-        return false;
+        ifstream input ( "types" );
+
+        input >> number_of_word_types;
+
+        word_types_list = new string [ number_of_word_types + 1 ];
+
+        for ( int i = 0; i < number_of_word_types; i ++ ) {
+
+            input >> word_types_list [ i ];
+        }
+
     }
 
     bool InportListOfStoredWordTypes () {
@@ -73,6 +83,11 @@ namespace GAME_PARAMETERS {
     bool AddWordType () {
 
         //adding a word type
+        return false;
+    }
+
+    bool AddAWord () {
+
         return false;
     }
 

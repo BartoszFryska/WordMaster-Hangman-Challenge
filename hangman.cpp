@@ -1,8 +1,12 @@
 #include <iostream>
+#include <cstdio>
+#include <fstream>
 
 #include "FunctionalityFunctions.cpp"
 
 int main () {
+
+    GAME_PARAMETERS::InporGameParameters();
 
     PrintIntro ();
 
@@ -26,7 +30,6 @@ int main () {
 
             default:
             system("clear");
-            printf ( "Unknown input, please try again" );
             break;
         }
     } 

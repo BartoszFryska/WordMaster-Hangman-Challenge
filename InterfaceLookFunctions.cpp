@@ -437,7 +437,7 @@ void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
 
         PrintGameScreenComponentsSeparator ();
 
-        printf ( "\n\n ");
+        printf ( "\n\n");
 
         PrintWordInSpecialFont ( mistery );
 
@@ -449,12 +449,6 @@ void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
 
         }
         else printf ( "To continue enter any character: ");
-}
-
-void PrintWinningScreen() {
-
-    
-    
 }
 
 
