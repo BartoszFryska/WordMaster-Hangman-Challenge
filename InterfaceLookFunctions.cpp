@@ -160,6 +160,33 @@ void PrintExitMessage () {
     //printing exit message
 }
 
+void PrintWordTypesInChoosingScreen ( bool * ChosenTypes ) {
+
+    std::cout << "Please choose types of guesswords :\n";
+
+    for ( int i = 0; i < GAME_PARAMETERS::number_of_word_types; i++ ) {
+
+        if ( ChosenTypes [ i ] ) {
+
+            std::cout << GREEN << i + 1 << ". " << GAME_PARAMETERS::word_types_list [ i ] << RESET;
+        }
+
+        else {
+            std::cout << RED << i + 1 << ". " << GAME_PARAMETERS::word_types_list [ i ] << RESET;
+        }
+
+        if ( i % 3 == 2 || i == GAME_PARAMETERS::number_of_word_types - 1) {
+
+            std::cout << '\n';
+        }
+
+        else {
+
+            std::cout << '\t';
+        }
+    }
+}
+
 void PrintLettersInColours( char WasTheLetterChosen [ 26 ] ) {
 
     for ( int i = 0; i < 26; i ++ ) {

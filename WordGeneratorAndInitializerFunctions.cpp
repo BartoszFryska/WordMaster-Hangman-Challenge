@@ -1,4 +1,16 @@
 #include <iostream>
+#include <string>
+#include <string.h>
+#include <unistd.h>
+#include <cstring>
+#include <memory>
+#include <stdexcept>
+#include <array>
+#include <cstdio>
+#include <vector>
+#include <cstdlib>
+#include <cstdio>
+#include <fstream>
 
 class Word {
 
@@ -65,13 +77,26 @@ namespace GAME_PARAMETERS {
 
         input >> number_of_word_types;
 
-        word_types_list = new string [ number_of_word_types + 1 ];
+        word_types_list = new string [ number_of_word_types ];
 
         for ( int i = 0; i < number_of_word_types; i ++ ) {
 
             input >> word_types_list [ i ];
         }
 
+        input.close();
+
+        ifstream input ( "words" );
+
+        std::string temp;
+
+        number_of_words = 0;
+
+        while ( !input.eof() ) {
+
+            number_of_words ++;
+            getline ( input, temp );
+        }
     }
 
     bool InportListOfStoredWordTypes () {
@@ -92,7 +117,6 @@ namespace GAME_PARAMETERS {
     }
 
 };
-
 
 bool GenerateAWord ( Word &mistery, bool * ChosenTypes, int NumberOfTypes, std::string * WordTypeslist ) {
 

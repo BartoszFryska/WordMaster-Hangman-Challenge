@@ -66,14 +66,70 @@ bool IsNotExit ( int &OperationToPerform ) {
     return true;
 }
 
-bool ChooseTypeOfWords( bool * ChosenTypes ) {
+bool IsThereNoTypeChosen ( bool * ChosenTypes ) {
 
-    system ("clear" );
-    printf ( "wordtypes, bla bla bla" );
-    getchar();
-    //outputing types
-    //getting input, if 'exit', exitting
-    //writing all types selected
+    for ( int i = 0; i < GAME_PARAMETERS::number_of_word_types; i ++ ) {
+
+        if ( ChosenTypes [ i ] )
+            return false;
+    }
+
+    return true;
+}
+
+bool ChooseTypeOfWords( bool * ChosenTypes ) {
+    
+    ChosenTypes = new bool [ GAME_PARAMETERS::number_of_word_types ];
+    fill ( ChosenTypes, ChosenTypes + GAME_PARAMETERS::number_of_word_types, false );
+
+    char c = 0;
+    string temp;
+
+    while ( c != '\n') {
+
+        PrintWordTypesInChoosingScreen ( ChosenTypes ); 
+        cout << "(Type \'q\' to exit, \'p\' or enter to proceed)\n\n";
+
+        c = getchar();
+
+        getline ( cin, temp );
+
+        if ( c == 'q' ) {
+
+            return false;
+        }
+
+        else if ( isdigit ( c ) ) {
+
+            if ( c - '0' <= GAME_PARAMETERS::number_of_word_types ) {
+
+                if ( *( ChosenTypes + ( c - '0' ) - 1 ) ) {
+
+                     *( ChosenTypes + ( c - '0' ) - 1 ) = false;
+                }
+
+                else {
+
+                     *( ChosenTypes + ( c - '0' ) - 1 ) = true;
+                }
+            }
+        }
+
+        else if ( c == '\n') {
+
+            if ( IsThereNoTypeChosen ( ChosenTypes ) ) {
+
+                c = 0;
+            }
+        }
+        
+    }
+
+    if ( IsThereNoTypeChosen ( ChosenTypes ) ) {
+
+        return false;
+    }
+
     return true;
 }
 
