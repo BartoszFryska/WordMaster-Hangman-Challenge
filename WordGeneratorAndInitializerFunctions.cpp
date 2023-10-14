@@ -37,6 +37,19 @@ class Word {
             return WasThereATrue;
         }
 
+        bool TheWordIsGuessed () {
+
+            for ( int i = 0; i < guessWord.size(); i++ ) {
+
+                if ( ! (*(ArrayOfPositionsGuessedCorrectly + i)) ) {
+
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
 };
 
 namespace GAME_PARAMETERS {

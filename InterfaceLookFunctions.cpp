@@ -54,6 +54,7 @@ namespace FONT {
     std::string font_numbers [ 10 ]; // Will add
 
     std::string font_empty_space [ FontSizeUpward ] = { "            ","            ","            ","            ","            ","─────────   " };
+    std::string space [ FontSizeUpward ] = { "          ","          ","          ","          ","          ","          " };
 
     void OutputACorrectLineOfACorrectCharacterInAFont ( char character, int line ) {
 
@@ -75,7 +76,15 @@ namespace FONT {
 
             else {
 
-                std::cout << font_empty_space [ line ];
+                if ( character == 1 ) {
+
+                   std::cout << font_empty_space [ line ]; 
+                }
+                
+                else {
+
+                    std::cout << space [ line ];
+                }
             }
         }
 
@@ -106,14 +115,14 @@ void PrintWordInSpecialFont ( Word mistery ) {
 
         for ( int i = 0; i < mistery.guessWord.size(); i++ ) {
 
-            if ( *( mistery.ArrayOfPositionsGuessedCorrectly + i ) ) {
+            if ( *( mistery.ArrayOfPositionsGuessedCorrectly + i ) || mistery.guessWord [ i ] == ' ' ) {
 
-                    s += mistery.guessWord [ i ];
+                    s.push_back(mistery.guessWord [ i ]);
             }
 
             else {
 
-                s += " ";
+                s.push_back ( 1 );
             }
         }
 
@@ -134,7 +143,16 @@ void PrintIntro() {
 
 void PrintMenu() {
 
-    //printing menu
+    system ( "clear" );
+
+    FONT::PrintStringInSpecialFont ( "HANGMAN");
+    printf ("\n\n");
+
+    printf ( "\t\t1. Play\n");
+    printf ( "\t\t2. Add a word //not functioning\n");
+    printf ( "\t\t3. Settings //not functioning\n");
+    printf ("\t\t4. Exit\n" );
+    printf ( "\n" );
 }
 
 void PrintExitMessage () {
@@ -182,7 +200,7 @@ void PrintGameScreenComponentsSeparator () {
     printf ( "--------------------------------------------------------------------------------------------------------\n" );
 }
 
-void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word mistery ) {
+void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word mistery, bool IsTheWordGuessed ) {
 
         system ( "clear" );
 
@@ -423,9 +441,21 @@ void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
 
         PrintWordInSpecialFont ( mistery );
 
-        printf ( "Your guess: ");
+        if ( NumberOfMisses < 6 ) {
+
+            if ( IsTheWordGuessed ) printf ( "Congratulations! You won! To continue enter any character: ");
+            
+            else printf ( "Your guess: ");
+
+        }
+        else printf ( "To continue enter any character: ");
 }
 
+void PrintWinningScreen() {
+
+    
+    
+}
 
 
 /*

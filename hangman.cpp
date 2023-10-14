@@ -6,7 +6,7 @@ int main () {
 
     PrintIntro ();
 
-    int OperationToPerform;  
+    int OperationToPerform;   
 
     while ( IsNotExit ( OperationToPerform ) ) {
 
@@ -16,10 +16,10 @@ int main () {
             Play ();
             break;
 
-            case 2:
+            case 2: 
             Add();
             break;
-
+ 
             case 3:
             Settings();
             break;
@@ -27,10 +27,11 @@ int main () {
             default:
             system("clear");
             printf ( "Unknown input, please try again" );
+            break;
         }
     } 
  
-    PrintExitMessage ();    
+    PrintExitMessage ();      
 }       
 
 /* plan to do:

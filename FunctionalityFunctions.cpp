@@ -111,10 +111,12 @@ bool Settings () {
     return false;
 }
 
-bool GameIsNotLost ( int NumberOfMisses ) {
+bool GameIsNotLost ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word mistery ) {
 
-    if ( NumberOfMisses >= 8 ) {
-
+    if ( NumberOfMisses >= 6 ) {
+        
+        PrintGameScreen ( WasTheLetterChosen, NumberOfMisses, mistery, false );
+        getchar();
         return false;
     }
 
@@ -123,12 +125,16 @@ bool GameIsNotLost ( int NumberOfMisses ) {
 
 char GetGameInput () {
 
+    char c;
+    c = getchar ();
+
     string input;
     getline ( cin, input );
 
-    if ( isalpha( input [ 0 ] ) ) {
+    if ( isalpha( c ) ) {
 
-        return toupper ( input [ 0 ] );
+        return toupper ( c );
+        
     }
 
     else return 1;
@@ -145,22 +151,32 @@ void GameStart ( Word mistery ) {
 
     //gameplay
 
-    while ( GameIsNotLost ( NumberOfMisses ) ) {
+    while ( GameIsNotLost ( WasThatLetterChosen, NumberOfMisses, mistery ) ){
 
-        PrintGameScreen ( WasThatLetterChosen, NumberOfMisses, mistery );
+        PrintGameScreen ( WasThatLetterChosen, NumberOfMisses, mistery, false );
 
         CurrentLetterChosen = GetGameInput ();
 
         if ( CurrentLetterChosen == 1 ) continue;
 
-        if ( WasThatLetterChosen [ CurrentLetterChosen ] ) continue;
+        if ( WasThatLetterChosen [ CurrentLetterChosen - 'A' ] ) continue;
 
-        WasThatLetterChosen [ CurrentLetterChosen ] ++ ;
+        WasThatLetterChosen [ CurrentLetterChosen - 'A' ] ++ ;
 
         if ( !mistery.LetterIsInsideAWord( CurrentLetterChosen ) ) {
 
             NumberOfMisses++;
-            WasThatLetterChosen [ CurrentLetterChosen ] ++;
+            WasThatLetterChosen [ CurrentLetterChosen - 'A' ] ++;
+        }
+
+        else {
+
+            if ( mistery.TheWordIsGuessed() ) {
+
+                PrintGameScreen ( WasThatLetterChosen, NumberOfMisses, mistery, true );
+                getchar();
+                break;
+            }
         }
     }
 }
