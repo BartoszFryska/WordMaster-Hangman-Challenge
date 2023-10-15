@@ -16,7 +16,7 @@ int main () {
 
             case 1:
             Play ();
-            break;
+            break; 
 
             case 2: 
             Add();

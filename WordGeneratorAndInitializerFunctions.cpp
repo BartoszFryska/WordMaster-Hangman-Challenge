@@ -12,6 +12,8 @@
 #include <cstdio>
 #include <fstream>
 
+using namespace std;
+
 class Word {
 
     private:
@@ -71,6 +73,53 @@ namespace GAME_PARAMETERS {
     int * list_of_types_of_words_stored_in_a_file;
     int number_of_words;
 
+    void InportTypesOfWordsInAList ( ) {
+
+        ifstream input2 ( "words" );
+
+        string temp, temp2;
+
+        int temp3;
+
+        for ( int i = 0; i < number_of_words; i ++ ) {
+
+            getline ( input2, temp );
+
+            temp3 = 0;
+
+            for ( int j = 0; j < temp.size(); j ++ ) {
+
+                if ( temp [ i ] == '-') {
+
+                    temp3 ++;
+                }
+
+                if ( temp3 == 2 ) {
+
+                    temp2.clear();
+
+                    temp2 = temp.substr ( i + 2, temp.size() - i - 2 );
+
+                    //cout << temp.substr ( i + 2, temp.size() - i - 2 ) << " ";
+
+                    break;
+                }
+            }
+
+            for ( int j = 0; j < number_of_word_types; j ++ ) {
+
+                if ( word_types_list [ j ] == temp2 ) {
+
+                    list_of_types_of_words_stored_in_a_file [ i ] = j;
+
+                    break;
+                }
+            }
+        }
+
+        input2.close();  
+    }
+
     bool InporGameParameters () {
 
         ifstream input ( "types" );
@@ -86,17 +135,27 @@ namespace GAME_PARAMETERS {
 
         input.close();
 
-        ifstream input ( "words" );
+        ifstream input2 ( "words" );
 
         std::string temp;
+        std::string temp2;
+        int temp3 = 0;
 
         number_of_words = 0;
 
-        while ( !input.eof() ) {
+        while ( !input2.eof() ) {
 
             number_of_words ++;
-            getline ( input, temp );
+            getline ( input2, temp );
         }
+
+        int * list_of_types_of_words_stored_in_a_file = new int [number_of_words];
+
+        input2.close();
+
+        InportTypesOfWordsInAList ( );
+
+        return true;
     }
 
     bool InportListOfStoredWordTypes () {
