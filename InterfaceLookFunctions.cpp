@@ -161,7 +161,9 @@ void PrintExitMessage () {
 }
 
 void PrintWordTypesInChoosingScreen ( bool * ChosenTypes ) {
-
+    
+    system ( "clear" );
+    
     std::cout << "Please choose types of guesswords :\n";
 
     for ( int i = 0; i < GAME_PARAMETERS::number_of_word_types; i++ ) {

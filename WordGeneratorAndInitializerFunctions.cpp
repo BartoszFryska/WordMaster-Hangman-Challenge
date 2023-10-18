@@ -73,7 +73,7 @@ namespace GAME_PARAMETERS {
     int * list_of_types_of_words_stored_in_a_file;
     int number_of_words;
 
-    void InportTypesOfWordsInAList ( ) {
+    void InportTypesOfWordsInAList ( int * list ) {
 
         ifstream input2 ( "words" );
 
@@ -86,23 +86,24 @@ namespace GAME_PARAMETERS {
             getline ( input2, temp );
 
             temp3 = 0;
+            temp2.clear();
 
             for ( int j = 0; j < temp.size(); j ++ ) {
 
-                if ( temp [ i ] == '-') {
+                if ( temp3 == 3 ) {
+
+                    temp2.push_back ( temp [ j ] );
+                }
+
+                if ( temp [ j ] == '-') {
 
                     temp3 ++;
                 }
 
                 if ( temp3 == 2 ) {
 
-                    temp2.clear();
-
-                    temp2 = temp.substr ( i + 2, temp.size() - i - 2 );
-
-                    //cout << temp.substr ( i + 2, temp.size() - i - 2 ) << " ";
-
-                    break;
+                    temp3 ++;
+                    j++;
                 }
             }
 
@@ -110,7 +111,7 @@ namespace GAME_PARAMETERS {
 
                 if ( word_types_list [ j ] == temp2 ) {
 
-                    list_of_types_of_words_stored_in_a_file [ i ] = j;
+                    list [ i ] = j;
 
                     break;
                 }
@@ -153,7 +154,7 @@ namespace GAME_PARAMETERS {
 
         input2.close();
 
-        InportTypesOfWordsInAList ( );
+        InportTypesOfWordsInAList ( list_of_types_of_words_stored_in_a_file );
 
         return true;
     }
