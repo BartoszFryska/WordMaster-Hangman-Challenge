@@ -159,12 +159,6 @@ namespace GAME_PARAMETERS {
         return true;
     }
 
-    bool InportListOfStoredWordTypes () {
-
-        //inporting a list
-        return false;
-    }
-
     bool AddWordType () {
 
         //adding a word type
@@ -178,10 +172,57 @@ namespace GAME_PARAMETERS {
 
 };
 
-bool GenerateAWord ( Word &mistery, bool * ChosenTypes, int NumberOfTypes, std::string * WordTypeslist ) {
+bool IsOneOfTheChosenTypes ( int number, bool * ChosenTypes) {
+
+    int *type = GAME_PARAMETERS::list_of_types_of_words_stored_in_a_file + number;
+
+    cout << *type;
+    getchar();
+
+    return ChosenTypes [ *type ];
+}
+
+bool GenerateAWord ( Word &mistery, int NumberOfWordTypes, bool * ChosenTypes ) {
 
     // generate a word randomly by choosing a random number, checking list 
-    mistery.FillWord ( "ANIA", "Najukochansza sziewczyna na swiecie", 1 );
+    system ( "clear" );
+    cout << "Generating..";
+    srand( time ( NULL ) );
+
+    int temp;
+    string temp_guessword = "";
+    string temp_hint = "";
+    string cha;
+    
+    while ( true ) {
+
+        temp = rand() % GAME_PARAMETERS::number_of_words;
+
+        cout << temp << " ";
+        getchar();
+
+        if ( IsOneOfTheChosenTypes ( temp, ChosenTypes) ) {
+
+            fstream one ( "words" );
+
+            for ( int i = 0; i < temp; i++ ) {
+                getline ( one, temp_guessword );
+                cout << temp_guessword << " ";
+            }
+
+            getchar();
+
+            one >> temp_guessword >> cha >> temp_hint;
+            cout << temp_guessword << " " << cha << temp_hint;
+
+            mistery.FillWord ( temp_guessword, temp_hint, GAME_PARAMETERS::list_of_types_of_words_stored_in_a_file [ temp ] );
+            
+            one.close();
+
+            break;
+        }
+    }
+
     return true;
 }
 

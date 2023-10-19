@@ -79,7 +79,6 @@ bool IsThereNoTypeChosen ( bool * ChosenTypes ) {
 
 bool ChooseTypeOfWords( bool * ChosenTypes ) {
     
-    ChosenTypes = new bool [ GAME_PARAMETERS::number_of_word_types ];
     fill ( ChosenTypes, ChosenTypes + GAME_PARAMETERS::number_of_word_types, false );
 
     char c = 0;
@@ -144,7 +143,7 @@ bool Play() {
 
     Word mistery;
 
-    GenerateAWord ( mistery, ChosenTypes, GAME_PARAMETERS::number_of_word_types, GAME_PARAMETERS::word_types_list );
+    GenerateAWord ( mistery, GAME_PARAMETERS::number_of_word_types, ChosenTypes );
 
     delete ChosenTypes;
 
