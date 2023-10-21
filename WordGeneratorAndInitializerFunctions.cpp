@@ -70,56 +70,7 @@ namespace GAME_PARAMETERS {
 
     int number_of_word_types;
     std::string * word_types_list;
-    int * list_of_types_of_words_stored_in_a_file;
     int number_of_words;
-
-    void InportTypesOfWordsInAList ( int * list ) {
-
-        ifstream input2 ( "words" );
-
-        string temp, temp2;
-
-        int temp3;
-
-        for ( int i = 0; i < number_of_words; i ++ ) {
-
-            getline ( input2, temp );
-
-            temp3 = 0;
-            temp2.clear();
-
-            for ( int j = 0; j < temp.size(); j ++ ) {
-
-                if ( temp3 == 3 ) {
-
-                    temp2.push_back ( temp [ j ] );
-                }
-
-                if ( temp [ j ] == '-') {
-
-                    temp3 ++;
-                }
-
-                if ( temp3 == 2 ) {
-
-                    temp3 ++;
-                    j++;
-                }
-            }
-
-            for ( int j = 0; j < number_of_word_types; j ++ ) {
-
-                if ( word_types_list [ j ] == temp2 ) {
-
-                    list [ i ] = j;
-
-                    break;
-                }
-            }
-        }
-
-        input2.close();  
-    }
 
     bool InporGameParameters () {
 
@@ -154,7 +105,7 @@ namespace GAME_PARAMETERS {
 
         input2.close();
 
-        InportTypesOfWordsInAList ( list_of_types_of_words_stored_in_a_file );
+        //InportTypesOfWordsInAList ( list_of_types_of_words_stored_in_a_file );
 
         return true;
     }
@@ -172,17 +123,14 @@ namespace GAME_PARAMETERS {
 
 };
 
-bool IsOneOfTheChosenTypes ( int number, bool * ChosenTypes) {
+bool IsOneOfTheChosenTypes ( int number, bool * ChosenTypes, int * list_of_types_of_words_stored_in_a_file) {
 
-    int *type = GAME_PARAMETERS::list_of_types_of_words_stored_in_a_file + number;
-
-    cout << *type;
-    getchar();
+    int *type = list_of_types_of_words_stored_in_a_file + number;
 
     return ChosenTypes [ *type ];
 }
 
-bool GenerateAWord ( Word &mistery, int NumberOfWordTypes, bool * ChosenTypes ) {
+bool GenerateAWord ( Word &mistery, int NumberOfWordTypes, bool * ChosenTypes, int * list_of_types_of_words_stored_in_a_file ) {
 
     // generate a word randomly by choosing a random number, checking list 
     system ( "clear" );
@@ -190,6 +138,7 @@ bool GenerateAWord ( Word &mistery, int NumberOfWordTypes, bool * ChosenTypes ) 
     srand( time ( NULL ) );
 
     int temp;
+    string temp_line;
     string temp_guessword = "";
     string temp_hint = "";
     string cha;
@@ -198,24 +147,32 @@ bool GenerateAWord ( Word &mistery, int NumberOfWordTypes, bool * ChosenTypes ) 
 
         temp = rand() % GAME_PARAMETERS::number_of_words;
 
-        cout << temp << " ";
-        getchar();
+        //cout << temp << " ";
+        //getchar();
 
-        if ( IsOneOfTheChosenTypes ( temp, ChosenTypes) ) {
+        if ( IsOneOfTheChosenTypes ( temp, ChosenTypes, list_of_types_of_words_stored_in_a_file) ) {
 
-            fstream one ( "words" );
+            ifstream one ("words");
+
 
             for ( int i = 0; i < temp; i++ ) {
-                getline ( one, temp_guessword );
-                cout << temp_guessword << " ";
+
+                getline ( one, temp_line );
             }
 
-            getchar();
+            one >> temp_guessword; //getting in guessword
+            one >> cha; //getting in a separator
+            one >> cha; //getting another word
 
-            one >> temp_guessword >> cha >> temp_hint;
-            cout << temp_guessword << " " << cha << temp_hint;
+            while ( cha != "-" ) {
 
-            mistery.FillWord ( temp_guessword, temp_hint, GAME_PARAMETERS::list_of_types_of_words_stored_in_a_file [ temp ] );
+                temp_hint += cha;
+                temp_hint += " ";
+
+                one >> cha;
+            }
+
+            mistery.FillWord ( temp_guessword, temp_hint, list_of_types_of_words_stored_in_a_file [ temp ] );
             
             one.close();
 

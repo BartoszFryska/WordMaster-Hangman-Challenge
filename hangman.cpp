@@ -8,14 +8,16 @@ int main () {
 
     PrintIntro ();
 
-    int OperationToPerform;   
+    int OperationToPerform;
+    int * TypesOfWordsInAList = new int [ GAME_PARAMETERS::number_of_words ]; 
+    InportTypesOfWordsInAList ( TypesOfWordsInAList );
 
     while ( IsNotExit ( OperationToPerform ) ) {
 
         switch ( OperationToPerform ) { 
 
             case 1:
-            Play ();
+            Play ( TypesOfWordsInAList );
             break; 
 
             case 2: 

@@ -6,6 +6,54 @@ using namespace std;
 
 void GameStart ( Word mistery );
 
+void InportTypesOfWordsInAList ( int * list ) {
+
+        ifstream input2 ( "words" );
+
+        string temp, temp2;
+
+        int temp3;
+
+        for ( int i = 0; i < GAME_PARAMETERS::number_of_words; i ++ ) {
+
+            getline ( input2, temp );
+
+            temp3 = 0;
+            temp2.clear();
+
+            for ( int j = 0; j < temp.size(); j ++ ) {
+
+                if ( temp3 == 3 ) {
+
+                    temp2.push_back ( temp [ j ] );
+                }
+
+                if ( temp [ j ] == '-') {
+
+                    temp3 ++;
+                }
+
+                if ( temp3 == 2 ) {
+
+                    temp3 ++;
+                    j++;
+                }
+            }
+
+            for ( int j = 0; j < GAME_PARAMETERS::number_of_words; j ++ ) {
+
+                if ( GAME_PARAMETERS::word_types_list [ j ] == temp2 ) {
+
+                    list [ i ] = j;
+
+                    break;
+                }
+            }
+        }
+
+        input2.close();  
+    }
+
 void MakeInputUsable ( string &Input ) {
 
     int i = 0;
@@ -132,7 +180,7 @@ bool ChooseTypeOfWords( bool * ChosenTypes ) {
     return true;
 }
 
-bool Play() {
+bool Play( int * list_of_types_of_words_stored_in_a_file ) {
 
     bool * ChosenTypes = new bool [ GAME_PARAMETERS::number_of_word_types ];
 
@@ -143,7 +191,7 @@ bool Play() {
 
     Word mistery;
 
-    GenerateAWord ( mistery, GAME_PARAMETERS::number_of_word_types, ChosenTypes );
+    GenerateAWord ( mistery, GAME_PARAMETERS::number_of_word_types, ChosenTypes, list_of_types_of_words_stored_in_a_file );
 
     delete ChosenTypes;
 
