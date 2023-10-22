@@ -177,14 +177,14 @@ void PrintWordTypesInChoosingScreen ( bool * ChosenTypes ) {
             std::cout << RED << i + 1 << ". " << GAME_PARAMETERS::word_types_list [ i ] << RESET;
         }
 
-        if ( i % 3 == 2 || i == GAME_PARAMETERS::number_of_word_types - 1) {
+        if ( i % 4 == 3 || i == GAME_PARAMETERS::number_of_word_types - 1) {
 
             std::cout << '\n';
         }
 
         else {
 
-            std::cout << '\t';
+            std::cout << "\t";
         }
     }
 }

@@ -76,7 +76,18 @@ namespace GAME_PARAMETERS {
 
         ifstream input ( "types" );
 
-        input >> number_of_word_types;
+        number_of_word_types = 0;
+
+        std::string temp;
+
+        while ( !input.eof() ) {
+
+            input >> temp;
+            number_of_word_types++;
+        }
+
+        input.close();
+        input.open ( "types" );
 
         word_types_list = new string [ number_of_word_types ];
 
@@ -89,7 +100,6 @@ namespace GAME_PARAMETERS {
 
         ifstream input2 ( "words" );
 
-        std::string temp;
         std::string temp2;
         int temp3 = 0;
 
