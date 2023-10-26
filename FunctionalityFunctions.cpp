@@ -129,7 +129,8 @@ bool ChooseTypeOfWords( bool * ChosenTypes ) {
     
     fill ( ChosenTypes, ChosenTypes + GAME_PARAMETERS::number_of_word_types, false );
 
-    char c = 0;
+    char c;
+    int temp_int;
     string temp;
 
     while ( c != '\n') {
@@ -137,9 +138,8 @@ bool ChooseTypeOfWords( bool * ChosenTypes ) {
         PrintWordTypesInChoosingScreen ( ChosenTypes ); 
         cout << "(Type \'q\' to exit, \'p\' or enter to proceed)\n\n";
 
-        c = getchar();
-
         getline ( cin, temp );
+        c = temp [ 0 ];
 
         if ( c == 'q' ) {
 
@@ -148,16 +148,39 @@ bool ChooseTypeOfWords( bool * ChosenTypes ) {
 
         else if ( isdigit ( c ) ) {
 
-            if ( c - '0' <= GAME_PARAMETERS::number_of_word_types ) {
+            temp_int = c - '0';
 
-                if ( *( ChosenTypes + ( c - '0' ) - 1 ) ) {
+            c = temp [ 1 ];
 
-                     *( ChosenTypes + ( c - '0' ) - 1 ) = false;
+            if ( isdigit ( c ) ) {
+
+                if (  temp_int * 10 + (c - '0') <= GAME_PARAMETERS::number_of_word_types ) {
+
+                    if ( *( ChosenTypes + ( temp_int * 10 + (c - '0') ) - 1 ) ) {
+
+                         *( ChosenTypes + ( temp_int * 10 + (c - '0') ) - 1 ) = false;
+                    }
+
+                    else {
+
+                         *( ChosenTypes + (temp_int * 10 + (c - '0') ) - 1 ) = true;
+                    }
                 }
+            }
 
-                else {
+            else {
 
-                     *( ChosenTypes + ( c - '0' ) - 1 ) = true;
+                if ( c - '0' <= GAME_PARAMETERS::number_of_word_types ) {
+
+                    if ( *( ChosenTypes + temp_int - 1 ) ) {
+
+                         *( ChosenTypes + temp_int - 1 ) = false;
+                    }
+
+                    else {
+
+                         *( ChosenTypes + temp_int - 1 ) = true;
+                    }
                 }
             }
         }
@@ -169,7 +192,11 @@ bool ChooseTypeOfWords( bool * ChosenTypes ) {
                 c = 0;
             }
         }
-        
+
+        else if ( c == 'p' ) {
+
+            break;
+        }
     }
 
     if ( IsThereNoTypeChosen ( ChosenTypes ) ) {
