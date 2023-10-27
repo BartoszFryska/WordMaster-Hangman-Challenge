@@ -140,7 +140,7 @@ bool IsOneOfTheChosenTypes ( int number, bool * ChosenTypes, int * list_of_types
     return ChosenTypes [ *type ];
 }
 
-bool GenerateAWord ( Word &mistery, int NumberOfWordTypes, bool * ChosenTypes, int * list_of_types_of_words_stored_in_a_file ) {
+bool GenerateAWord ( Word *mistery, int NumberOfWordTypes, bool * ChosenTypes, int * list_of_types_of_words_stored_in_a_file ) {
 
     // generate a word randomly by choosing a random number, checking list 
     system ( "clear" );
@@ -182,7 +182,7 @@ bool GenerateAWord ( Word &mistery, int NumberOfWordTypes, bool * ChosenTypes, i
                 one >> cha;
             }
 
-            mistery.FillWord ( temp_guessword, temp_hint, list_of_types_of_words_stored_in_a_file [ temp ] );
+            mistery->FillWord ( temp_guessword, temp_hint, list_of_types_of_words_stored_in_a_file [ temp ] );
             
             one.close();
 

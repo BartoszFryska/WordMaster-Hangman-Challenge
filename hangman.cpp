@@ -33,6 +33,10 @@ int main () {
             break;
         }
     } 
+
+    delete [] TypesOfWordsInAList;
+
+    Exit();
  
     PrintExitMessage ();      
 }       

@@ -4,7 +4,14 @@
 
 using namespace std;
 
-void GameStart ( Word mistery );
+void GameStart ( Word * mistery );
+
+void Exit() {
+
+    PrintExitMessage();
+
+
+}
 
 void InportTypesOfWordsInAList ( int * list ) {
 
@@ -125,79 +132,127 @@ bool IsThereNoTypeChosen ( bool * ChosenTypes ) {
     return true;
 }
 
+int GetInputInIntValue ( bool * ChosenTypes ) {
+
+    string temp;
+    char c;
+    int temp_int;
+
+    getline ( cin, temp );
+
+    c = temp [ 0 ];
+
+    if ( c == 'q' ) {
+
+            return -1;
+        }
+
+    if ( isdigit ( c ) ) {
+
+        temp_int = c - '0';
+
+        c = temp [ 1 ];
+
+        if ( isdigit ( c ) ) {
+
+            if (  temp_int * 10 + (c - '0') <= GAME_PARAMETERS::number_of_word_types + 1 ) {
+
+                return temp_int * 10 + (c - '0');
+            }   
+        }
+    }
+
+    if ( c - '0' <= GAME_PARAMETERS::number_of_word_types + 1) {
+
+        return temp_int;
+    }
+
+    if ( c == '\n' ||  c == 'p') {
+
+        return 0;
+    }
+
+    return -2;
+}
+
+bool isTheteAFalseInChosenOnes ( bool * ChosenTypes ) {
+
+    for ( int i = 0; i < GAME_PARAMETERS::number_of_word_types; i ++  ) {
+
+        if ( ! *( ChosenTypes + i ) ) {
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
 bool ChooseTypeOfWords( bool * ChosenTypes ) {
     
     fill ( ChosenTypes, ChosenTypes + GAME_PARAMETERS::number_of_word_types, false );
 
-    char c;
-    int temp_int;
-    string temp;
+    int temp_int = -2;
 
-    while ( c != '\n') {
+    do {
 
         PrintWordTypesInChoosingScreen ( ChosenTypes ); 
-        cout << "(Type \'q\' to exit, \'p\' or enter to proceed)\n\n";
 
-        getline ( cin, temp );
-        c = temp [ 0 ];
+        temp_int = GetInputInIntValue ( ChosenTypes );
+        
 
-        if ( c == 'q' ) {
+        if ( temp_int == -1 ) {
 
             return false;
         }
 
-        else if ( isdigit ( c ) ) {
+        if (  temp_int == GAME_PARAMETERS::number_of_word_types + 1 ) {
 
-            temp_int = c - '0';
+            if ( isTheteAFalseInChosenOnes ( ChosenTypes ) ) {
 
-            c = temp [ 1 ];
+                for ( int i = 0; i < GAME_PARAMETERS::number_of_word_types; i++ ) {
 
-            if ( isdigit ( c ) ) {
-
-                if (  temp_int * 10 + (c - '0') <= GAME_PARAMETERS::number_of_word_types ) {
-
-                    if ( *( ChosenTypes + ( temp_int * 10 + (c - '0') ) - 1 ) ) {
-
-                         *( ChosenTypes + ( temp_int * 10 + (c - '0') ) - 1 ) = false;
-                    }
-
-                    else {
-
-                         *( ChosenTypes + (temp_int * 10 + (c - '0') ) - 1 ) = true;
-                    }
+                    *( ChosenTypes + i ) = true;
                 }
             }
 
             else {
 
-                if ( c - '0' <= GAME_PARAMETERS::number_of_word_types ) {
+                for ( int i = 0; i < GAME_PARAMETERS::number_of_word_types; i++ ) {
 
-                    if ( *( ChosenTypes + temp_int - 1 ) ) {
-
-                         *( ChosenTypes + temp_int - 1 ) = false;
-                    }
-
-                    else {
-
-                         *( ChosenTypes + temp_int - 1 ) = true;
-                    }
+                    *( ChosenTypes + i ) = false;
                 }
             }
+
+            continue;
         }
 
-        else if ( c == '\n') {
+
+        if ( temp_int <= GAME_PARAMETERS::number_of_word_types ) {
+
+            if ( *( ChosenTypes + temp_int - 1 ) ) {
+
+                *( ChosenTypes + temp_int - 1 ) = false;
+            }
+
+            else {
+
+                *( ChosenTypes + temp_int - 1 ) = true;
+            }
+
+            continue;
+        }
+            
+        if ( temp_int == 0 ) {
 
             if ( IsThereNoTypeChosen ( ChosenTypes ) ) {
 
-                c = 0;
+                temp_int = -2;
             }
         }
 
-        else if ( c == 'p' ) {
+    } while ( temp_int );
 
-            break;
-        }
-    }
 
     if ( IsThereNoTypeChosen ( ChosenTypes ) ) {
 
@@ -213,17 +268,19 @@ bool Play( int * list_of_types_of_words_stored_in_a_file ) {
 
     if ( !ChooseTypeOfWords( ChosenTypes ) ) {
 
+        delete [] ChosenTypes;
         return false;
     }
 
-    Word mistery;
+    Word * mistery = new Word;
 
     GenerateAWord ( mistery, GAME_PARAMETERS::number_of_word_types, ChosenTypes, list_of_types_of_words_stored_in_a_file );
-
-    delete ChosenTypes;
+    
+    delete [] ChosenTypes;
 
     GameStart ( mistery );
 
+    delete mistery;
     //play a game
     return true;
 }
@@ -241,7 +298,7 @@ bool Settings () {
     return false;
 }
 
-bool GameIsNotLost ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word mistery ) {
+bool GameIsNotLost ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word * mistery ) {
 
     if ( NumberOfMisses >= 6 ) {
         
@@ -270,7 +327,7 @@ char GetGameInput () {
     else return 1;
 }
 
-void GameStart ( Word mistery ) {
+void GameStart ( Word * mistery ) {
 
     //preparation for the game 
 
@@ -293,7 +350,7 @@ void GameStart ( Word mistery ) {
 
         WasThatLetterChosen [ CurrentLetterChosen - 'A' ] ++ ;
 
-        if ( !mistery.LetterIsInsideAWord( CurrentLetterChosen ) ) {
+        if ( !mistery->LetterIsInsideAWord( CurrentLetterChosen ) ) {
 
             NumberOfMisses++;
             WasThatLetterChosen [ CurrentLetterChosen - 'A' ] ++;
@@ -301,7 +358,7 @@ void GameStart ( Word mistery ) {
 
         else {
 
-            if ( mistery.TheWordIsGuessed() ) {
+            if ( mistery->TheWordIsGuessed() ) {
 
                 PrintGameScreen ( WasThatLetterChosen, NumberOfMisses, mistery, true );
                 getchar();

@@ -109,15 +109,15 @@ namespace FONT {
 
 };
 
-void PrintWordInSpecialFont ( Word mistery ) {
+void PrintWordInSpecialFont ( Word * mistery ) {
 
         std::string s = "";
 
-        for ( int i = 0; i < mistery.guessWord.size(); i++ ) {
+        for ( int i = 0; i < mistery->guessWord.size(); i++ ) {
 
-            if ( *( mistery.ArrayOfPositionsGuessedCorrectly + i ) || mistery.guessWord [ i ] == ' ' ) {
+            if ( *( mistery->ArrayOfPositionsGuessedCorrectly + i ) || mistery->guessWord [ i ] == ' ' ) {
 
-                    s.push_back(mistery.guessWord [ i ]);
+                    s.push_back(mistery->guessWord [ i ]);
             }
 
             else {
@@ -157,7 +157,11 @@ void PrintMenu() {
 
 void PrintExitMessage () {
 
-    //printing exit message
+    system ( "clear" );
+
+    FONT::PrintStringInSpecialFont ( "Bye" );
+
+    sleep ( 1 );
 }
 
 void PrintWordTypesInChoosingScreen ( bool * ChosenTypes ) {
@@ -177,7 +181,7 @@ void PrintWordTypesInChoosingScreen ( bool * ChosenTypes ) {
             std::cout << RED << i + 1 << ". " << GAME_PARAMETERS::word_types_list [ i ] << RESET;
         }
 
-        if ( i % 4 == 3 || i == GAME_PARAMETERS::number_of_word_types - 1) {
+        if ( i % 4 == 3 ) {
 
             std::cout << '\n';
         }
@@ -187,6 +191,12 @@ void PrintWordTypesInChoosingScreen ( bool * ChosenTypes ) {
             std::cout << "\t";
         }
     }
+
+    std::cout <<  GAME_PARAMETERS::number_of_word_types + 1 << ". Select All";
+
+    std::cout << "\n\n";
+
+    std::cout << "(Type \'q\' to exit, \'p\' or enter to proceed)\n\n";
 }
 
 void PrintLettersInColours( char WasTheLetterChosen [ 26 ] ) {
@@ -229,7 +239,7 @@ void PrintGameScreenComponentsSeparator () {
     printf ( "--------------------------------------------------------------------------------------------------------\n" );
 }
 
-void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word mistery, bool IsTheWordGuessed ) {
+void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word * mistery, bool IsTheWordGuessed ) {
 
         system ( "clear" );
 
@@ -462,7 +472,7 @@ void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
 
         PrintGameScreenComponentsSeparator ();
 
-        PrintHint ( mistery.hint );
+        PrintHint ( mistery->hint );
 
         PrintGameScreenComponentsSeparator ();
 
