@@ -36,9 +36,7 @@ int main () {
 
     delete [] TypesOfWordsInAList;
 
-    Exit();
- 
-    PrintExitMessage ();      
+    Exit();    
 }       
 
 /* plan to do:
