@@ -2,7 +2,7 @@
 
 bool GAME_PARAMETERS::InporGameParameters () {
 
-    ifstream input ( "types" );
+    std::ifstream input ( "types" );
 
     number_of_word_types = 0;
 
@@ -17,7 +17,7 @@ bool GAME_PARAMETERS::InporGameParameters () {
     input.close();
     input.open ( "types" );
 
-    word_types_list = new string [ number_of_word_types ];
+    word_types_list = new std::string [ number_of_word_types ];
 
     for ( int i = 0; i < number_of_word_types; i ++ ) {
 
@@ -26,7 +26,7 @@ bool GAME_PARAMETERS::InporGameParameters () {
 
     input.close();
 
-    ifstream input2 ( "words" );
+    std::ifstream input2 ( "words" );
 
     std::string temp2;
     int temp3 = 0;
@@ -46,13 +46,13 @@ bool GAME_PARAMETERS::InporGameParameters () {
     return true;
 }
 
-    bool GAME_PARAMETERS::AddWordType () {
+bool GAME_PARAMETERS::AddWordType () {
 
         //adding a word type
-        return false;
-    }
+    return false;
+}
 
-    bool GAME_PARAMETERS::AddAWord () {
+bool GAME_PARAMETERS::AddAWord () {
 
-        return false;
-    }
+    return false;
+}

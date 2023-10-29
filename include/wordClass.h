@@ -1,6 +1,8 @@
 #ifndef __WORDCLASS_H__
 #define __WORDCLASS_H__
 
+#include <iostream>
+
 class Word {
 
     private:

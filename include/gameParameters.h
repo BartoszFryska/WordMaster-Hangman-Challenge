@@ -1,18 +1,7 @@
 #ifndef __GAMEPARAMETERS_H__
 #define __GAMEPARAMETERS_H__
 
-#include <iostream>
-#include <string>
-#include <string.h>
-#include <unistd.h>
-#include <cstring>
-#include <memory>
-#include <stdexcept>
-#include <array>
-#include <cstdio>
-#include <vector>
-#include <cstdlib>
-#include <cstdio>
+#include <iostream> 
 #include <fstream>
 
 namespace GAME_PARAMETERS {

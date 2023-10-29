@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../include/wordClass.h"
 
 void Word::FillWord ( std::string wo, std::string hi, int ty) {
