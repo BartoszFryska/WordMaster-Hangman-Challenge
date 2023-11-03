@@ -1,10 +1,8 @@
-#include <iostream>
-#include <string>
-#include "InterfaceLookFunctions.cpp"
+#include "../include/functionalityFunctions.h"
+#include "../include/interfaceLookFunctions.h"
+#include "../include/gameParameters.h"
 
 using namespace std;
-
-void GameStart ( Word * mistery );
 
 void Exit() {
 

@@ -350,7 +350,7 @@ void PrintGameScreen ( char WasTheLetterChosen [ 26 ], int NumberOfMisses, Word 
 
         printf ( "\n\n");
 
-        PrintWordInSpecialFont ( mistery );
+        FONT::PrintWordInSpecialFont ( mistery );
 
         if ( NumberOfMisses < 6 ) {
 
