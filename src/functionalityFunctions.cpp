@@ -1,6 +1,8 @@
 #include "../include/functionalityFunctions.h"
 #include "../include/interfaceLookFunctions.h"
 #include "../include/gameParameters.h"
+#include "../include/wordClass.h"
+#include "../include/wordGenerator.h"
 
 using namespace std;
 

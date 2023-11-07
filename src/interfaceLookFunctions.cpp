@@ -1,5 +1,6 @@
 #include "../include/fontNamespace.h"
 #include "../include/interfaceLookFunctions.h"
+#include "../include/gameParameters.h"
 
 void PrintIntro() {
 

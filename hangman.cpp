@@ -1,6 +1,8 @@
 #include <iostream>
 
-#include "FunctionalityFunctions.cpp"
+#include "include/gameParameters.h"
+#include "include/functionalityFunctions.h"
+#include "include/interfaceLookFunctions.h"
 
 int main () {
 

@@ -1,0 +1,3 @@
+/home/dziad/projects/git/WordMaster-Hangman-Challenge/build/CMakeFiles/Hangman.dir
+/home/dziad/projects/git/WordMaster-Hangman-Challenge/build/CMakeFiles/edit_cache.dir
+/home/dziad/projects/git/WordMaster-Hangman-Challenge/build/CMakeFiles/rebuild_cache.dir

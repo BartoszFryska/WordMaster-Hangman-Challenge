@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+#include "wordClass.h"
+
 /**
  * @brief function prepares for leaving the program
  * @return returns void

@@ -15,12 +15,21 @@
 #include <cstdio>
 #include <fstream>
 
+#include "wordClass.h"
+
 /**
  * @brief prints game intro
  * 
  * @return returns void
 */
 void PrintIntro();
+
+/**
+ * @brief prints the main manu
+ * 
+ * @return returns void
+*/
+void PrintMenu();
 
 /**
  * @brief prints exit game message
