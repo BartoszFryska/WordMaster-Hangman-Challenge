@@ -1,16 +1,4 @@
-#include <iostream>
-#include <string>
-#include <string.h>
-#include <unistd.h>
-#include <cstring>
-#include <memory>
-#include <stdexcept>
-#include <array>
-#include <cstdio>
-#include <vector>
-#include <cstdlib>
-#include <cstdio>
-#include <fstream>
+#include "wordGenerator.h"
 
 using namespace std;
 

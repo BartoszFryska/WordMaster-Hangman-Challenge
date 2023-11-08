@@ -1,6 +1,22 @@
 #ifndef __WORDGENERATOR_H__
 #define __WORDGENERATOR_H__
 
+#include <iostream>
+#include <string>
+#include <string.h>
+#include <unistd.h>
+#include <cstring>
+#include <memory>
+#include <stdexcept>
+#include <array>
+#include <cstdio>
+#include <vector>
+#include <cstdlib>
+#include <cstdio>
+#include <fstream>
+#include "wordClass.h"
+#include "gameParameters.h"
+
 /**
  * @brief function checks if a numbers word stored in a file corresponding type is one of the chosen ones for the generation
  * 
