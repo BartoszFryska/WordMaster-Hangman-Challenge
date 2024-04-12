@@ -48,6 +48,6 @@ If you'd like to contribute to this project, feel free to submit pull requests o
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is open source.
 
 Have fun playing Hangman in your terminal! If you encounter any issues or have suggestions for improvement, please let us know.
